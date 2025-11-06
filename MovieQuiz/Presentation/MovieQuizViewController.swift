@@ -43,15 +43,16 @@ final class MovieQuizViewController: UIViewController {
         filmImage.image = quiz.image
         questionRating.text = quiz.text
         indexOfQuestion.text = quiz.questionNumber
-        // Очистим рамку при показе нового вопроса
+        filmImage.layer.cornerRadius = 20
+        filmImage.layer.masksToBounds = true
         filmImage.layer.borderWidth = 0
         filmImage.layer.borderColor = UIColor.clear.cgColor
     }
     
     private func showAnswerResult(isCorrect: Bool) {
         filmImage.layer.masksToBounds = true
-        filmImage.layer.borderWidth = 1
-        filmImage.layer.cornerRadius = 6
+        filmImage.layer.borderWidth = 8
+        filmImage.layer.cornerRadius = 20
         filmImage.layer.borderColor = definingBorderColor(isCorrect)
         _ = isCorrect ? correctAnswers += 1 : ()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -161,3 +162,4 @@ private let questions: [QuizQuestion] = [
         text: "Рейтинг этого фильма больше чем 6?",
         correctAnswer: false)
 ]
+
